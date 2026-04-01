@@ -2,9 +2,14 @@
   "info": {
     "_postman_id": "746b111e-41c4-425f-b994-3ef61c1a0e98",
     "name": "Inventory API Tests",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "53669326"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
   "item": [
     {
       "name": "Get Single Product",
@@ -13,29 +18,28 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
               "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "GET",
-        "header": [],
         "url": {
-          "raw": "http://192.168.1.20:8000/getSingleProduct?ProductID=1001",
-          "protocol": "http",
-          "host": ["192.168.1.20"],
-          "port": "8000",
+          "raw": "{{baseUrl}}/getSingleProduct?ProductID=1001",
+          "host": ["{{baseUrl}}"],
           "path": ["getSingleProduct"],
-          "query": [{"key": "ProductID", "value": "1001"}]
+          "query": [
+            {
+              "key": "ProductID",
+              "value": "1001"
+            }
+          ]
         }
-      },
-      "response": []
+      }
     },
     {
       "name": "Get All",
@@ -44,28 +48,22 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
               "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "GET",
-        "header": [],
         "url": {
-          "raw": "http://192.168.1.20:8000/getAll",
-          "protocol": "http",
-          "host": ["192.168.1.20"],
-          "port": "8000",
+          "raw": "{{baseUrl}}/getAll",
+          "host": ["{{baseUrl}}"],
           "path": ["getAll"]
         }
-      },
-      "response": []
+      }
     },
     {
       "name": "Add New",
@@ -74,22 +72,25 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
               "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "POST",
-        "header": [],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"ProductID\": 9999,\r\n  \"Name\": \"Test Product\",\r\n  \"UnitPrice\": 99.99,\r\n  \"StockQuantity\": 10,\r\n  \"Description\": \"Test\"\r\n}",
+          "raw": "{\n  \"ProductID\": 9999,\n  \"Name\": \"Test Product\",\n  \"UnitPrice\": 99.99,\n  \"StockQuantity\": 10,\n  \"Description\": \"Test\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -97,14 +98,11 @@
           }
         },
         "url": {
-          "raw": "http://192.168.1.20:8000/addNew",
-          "protocol": "http",
-          "host": ["192.168.1.20"],
-          "port": "8000",
+          "raw": "{{baseUrl}}/addNew",
+          "host": ["{{baseUrl}}"],
           "path": ["addNew"]
         }
-      },
-      "response": []
+      }
     },
     {
       "name": "Delete One",
@@ -113,29 +111,28 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
               "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "DELETE",
-        "header": [],
         "url": {
-          "raw": "http://192.168.1.20:8000/deleteOne?ProductID=9999",
-          "protocol": "http",
-          "host": ["192.168.1.20"],
-          "port": "8000",
+          "raw": "{{baseUrl}}/deleteOne?ProductID=9999",
+          "host": ["{{baseUrl}}"],
           "path": ["deleteOne"],
-          "query": [{"key": "ProductID", "value": "9999"}]
+          "query": [
+            {
+              "key": "ProductID",
+              "value": "9999"
+            }
+          ]
         }
-      },
-      "response": []
+      }
     },
     {
       "name": "Starts With",
@@ -144,29 +141,28 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
               "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "GET",
-        "header": [],
         "url": {
-          "raw": "http://192.168.1.20:8000/startsWith?letter=n",
-          "protocol": "http",
-          "host": ["192.168.1.20"],
-          "port": "8000",
+          "raw": "{{baseUrl}}/startsWith?letter=n",
+          "host": ["{{baseUrl}}"],
           "path": ["startsWith"],
-          "query": [{"key": "letter", "value": "n"}]
+          "query": [
+            {
+              "key": "letter",
+              "value": "n"
+            }
+          ]
         }
-      },
-      "response": []
+      }
     },
     {
       "name": "Paginate",
@@ -175,32 +171,32 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
               "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "GET",
-        "header": [],
         "url": {
-          "raw": "http://192.168.1.20:8000/paginate?startID=1001&endID=1010",
-          "protocol": "http",
-          "host": ["192.168.1.20"],
-          "port": "8000",
+          "raw": "{{baseUrl}}/paginate?startID=1001&endID=1010",
+          "host": ["{{baseUrl}}"],
           "path": ["paginate"],
           "query": [
-            {"key": "startID", "value": "1001"},
-            {"key": "endID", "value": "1010"}
+            {
+              "key": "startID",
+              "value": "1001"
+            },
+            {
+              "key": "endID",
+              "value": "1010"
+            }
           ]
         }
-      },
-      "response": []
+      }
     },
     {
       "name": "Convert",
@@ -209,29 +205,28 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
               "});"
             ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
         "method": "GET",
-        "header": [],
         "url": {
-          "raw": "http://192.168.1.20:8000/convert?ProductID=1001",
-          "protocol": "http",
-          "host": ["192.168.1.20"],
-          "port": "8000",
+          "raw": "{{baseUrl}}/convert?ProductID=1001",
+          "host": ["{{baseUrl}}"],
           "path": ["convert"],
-          "query": [{"key": "ProductID", "value": "1001"}]
+          "query": [
+            {
+              "key": "ProductID",
+              "value": "1001"
+            }
+          ]
         }
-      },
-      "response": []
+      }
     }
   ]
 }

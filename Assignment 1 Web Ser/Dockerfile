@@ -1,12 +1,12 @@
 FROM ubuntu:22.04
 
-RUN apt-get update && apt-get install -y python3 python3-pip zip
+RUN apt-get update && apt-get install -y python3 python3-pip curl
 
 WORKDIR /app
 
-COPY . .
+COPY . /app
 
-RUN pip3 install fastapi uvicorn pymongo requests
+RUN pip3 install -r requirements.txt
 
 EXPOSE 8000
 

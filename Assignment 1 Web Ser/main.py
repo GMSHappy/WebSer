@@ -1,19 +1,20 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from pymongo import MongoClient
-from typing import Union
-import logging
 import requests
+import logging
 
 app = FastAPI()
 
 logging.basicConfig(level=logging.DEBUG)
-# Connect to MongoDB
+
+# connect to mongodb
 client = MongoClient("mongodb://localhost:27017/")
 db = client["inventory_db"]
 collection = db["products"]
 
-#Pydantic model for adding a new product
+
+# product model
 class Product(BaseModel):
     ProductID: int
     Name: str
@@ -22,7 +23,12 @@ class Product(BaseModel):
     Description: str
 
 
-#Get a single product by ID
+@app.get("/")
+def home():
+    return {"message": "Inventory API is running"}
+
+
+# get one product
 @app.get("/getSingleProduct")
 def get_single_product(ProductID: int):
     product = collection.find_one({"ProductID": ProductID}, {"_id": 0})
@@ -31,21 +37,21 @@ def get_single_product(ProductID: int):
     return product
 
 
-#Get all products
+# get all products
 @app.get("/getAll")
 def get_all():
     products = list(collection.find({}, {"_id": 0}))
     return products
 
 
-#Add a new product
+# add a new product
 @app.post("/addNew")
 def add_new(product: Product):
     collection.insert_one(product.dict())
     return {"message": "Product added successfully"}
 
 
-#Delete a product by ID
+# delete one product
 @app.delete("/deleteOne")
 def delete_one(ProductID: int):
     result = collection.delete_one({"ProductID": ProductID})
@@ -54,7 +60,7 @@ def delete_one(ProductID: int):
     return {"message": "Product deleted successfully"}
 
 
-#Get all products starting with a letter
+# search by first letter
 @app.get("/startsWith")
 def starts_with(letter: str):
     products = list(collection.find(
@@ -64,7 +70,7 @@ def starts_with(letter: str):
     return products
 
 
-#Paginate products by ID range
+# paginate by id range
 @app.get("/paginate")
 def paginate(startID: int, endID: int):
     products = list(collection.find(
@@ -74,13 +80,23 @@ def paginate(startID: int, endID: int):
     return products
 
 
-#Convert product price from USD to EUR
+# convert usd to euro
 @app.get("/convert")
 def convert(ProductID: int):
     product = collection.find_one({"ProductID": ProductID}, {"_id": 0})
+
     if product is None:
         return {"error": "Product not found"}
+
     response = requests.get("https://api.exchangerate-api.com/v4/latest/USD")
-    rate = response.json()["rates"]["EUR"]
-    price_in_euros = round(product["UnitPrice"] * rate, 2)
-    return {"ProductID": ProductID, "Name": product["Name"], "PriceUSD": product["UnitPrice"], "PriceEUR": price_in_euros}
+    data = response.json()
+    euro_rate = data["rates"]["EUR"]
+
+    euro_price = round(product["UnitPrice"] * euro_rate, 2)
+
+    return {
+        "ProductID": product["ProductID"],
+        "Name": product["Name"],
+        "PriceUSD": product["UnitPrice"],
+        "PriceEUR": euro_price
+    }
