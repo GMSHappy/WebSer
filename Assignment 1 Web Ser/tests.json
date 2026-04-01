@@ -1,0 +1,18 @@
+{
+  "info": {
+    "_postman_id": "746b111e-41c4-425f-b994-3ef61c1a0e98",
+    "name": "Inventory API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53669326"
+  },
+  "item": [
+    {
+      "name": "Get Single Product",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
