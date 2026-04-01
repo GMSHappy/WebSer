@@ -7,7 +7,7 @@ import requests
 app = FastAPI()
 
 # Connect to MongoDB
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb://192.168.1.20:27017/")
 db = client["inventory_db"]
 collection = db["products"]
 

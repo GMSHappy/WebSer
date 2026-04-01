@@ -23,46 +23,47 @@
           }
         }
       ],
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
       "request": {
         "method": "GET",
         "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
         "url": {
-          "raw": "http://localhost:8000/convert?ProductID=100",
+          "raw": "http://192.168.1.20:8000/getSingleProduct?ProductID=1001",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["192.168.1.20"],
           "port": "8000",
-          "path": [
-            "convert"
-          ],
-          "query": [
-            {
-              "key": "ProductID",
-              "value": "100"
-            }
-          ]
+          "path": ["getSingleProduct"],
+          "query": [{"key": "ProductID", "value": "1001"}]
         }
       },
       "response": []
     },
     {
       "name": "Get All",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "http://192.168.1.20:8000/getAll",
+          "protocol": "http",
+          "host": ["192.168.1.20"],
+          "port": "8000",
+          "path": ["getAll"]
+        }
       },
       "response": []
     },
@@ -96,21 +97,17 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8000/addNew",
+          "raw": "http://192.168.1.20:8000/addNew",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["192.168.1.20"],
           "port": "8000",
-          "path": [
-            "addNew"
-          ]
+          "path": ["addNew"]
         }
       },
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "Delete One",
       "event": [
         {
           "listen": "test",
@@ -130,21 +127,12 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/deleteOne?ProductID=9999",
+          "raw": "http://192.168.1.20:8000/deleteOne?ProductID=9999",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["192.168.1.20"],
           "port": "8000",
-          "path": [
-            "deleteOne"
-          ],
-          "query": [
-            {
-              "key": "ProductID",
-              "value": "9999"
-            }
-          ]
+          "path": ["deleteOne"],
+          "query": [{"key": "ProductID", "value": "9999"}]
         }
       },
       "response": []
@@ -170,21 +158,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/startsWith?letter=n",
+          "raw": "http://192.168.1.20:8000/startsWith?letter=n",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["192.168.1.20"],
           "port": "8000",
-          "path": [
-            "startsWith"
-          ],
-          "query": [
-            {
-              "key": "letter",
-              "value": "n"
-            }
-          ]
+          "path": ["startsWith"],
+          "query": [{"key": "letter", "value": "n"}]
         }
       },
       "response": []
@@ -210,24 +189,14 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/paginate?startID=1001&endID=1010",
+          "raw": "http://192.168.1.20:8000/paginate?startID=1001&endID=1010",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["192.168.1.20"],
           "port": "8000",
-          "path": [
-            "paginate"
-          ],
+          "path": ["paginate"],
           "query": [
-            {
-              "key": "startID",
-              "value": "1001"
-            },
-            {
-              "key": "endID",
-              "value": "1010"
-            }
+            {"key": "startID", "value": "1001"},
+            {"key": "endID", "value": "1010"}
           ]
         }
       },
@@ -254,21 +223,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/convert?ProductID=1001",
+          "raw": "http://192.168.1.20:8000/convert?ProductID=1001",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["192.168.1.20"],
           "port": "8000",
-          "path": [
-            "convert"
-          ],
-          "query": [
-            {
-              "key": "ProductID",
-              "value": "1001"
-            }
-          ]
+          "path": ["convert"],
+          "query": [{"key": "ProductID", "value": "1001"}]
         }
       },
       "response": []
