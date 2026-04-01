@@ -2,10 +2,12 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from pymongo import MongoClient
 from typing import Union
+import logging
 import requests
 
 app = FastAPI()
 
+logging.basicConfig(level=logging.DEBUG)
 # Connect to MongoDB
 client = MongoClient("mongodb://192.168.1.20:27017/")
 db = client["inventory_db"]
